@@ -1,0 +1,69 @@
+    //////////////////IMPLEMENTATION FILE OF BINARY TREE CLASS////////////////////////
+
+#ifndef binTree_h
+#define binTree_h
+#include "Node.h"
+using namespace std;
+class  binTree{
+
+	int count;
+public:
+
+	Cnode *root;
+	//NULL CONSTRUCTOR
+	binTree();
+
+	//PARAMETRIC CONSTRUCTOR
+	binTree(Cnode*&ptr);
+
+	//FUNCTION TO INSERT NODE
+	binTree& insert(Cnode *&ptr);
+
+	//PRINT PREORDER 
+	void printPreorder();
+
+	//PRINT POSTORDER
+	void printInorder();
+
+	//PRINT POSTORDER
+	void printPostorder();
+
+	//DESTRUCTOR
+	~binTree();
+
+	//PRINT REVERSE
+	void printReverse();
+
+	//GET MINIMUM KEY NODE
+	int minValue(Cnode *node);
+	
+	//GET MAXIMUM KEY NODE
+	int maxValue(Cnode *node);
+
+	//TO CHECK IF TREE IS EMPTY OR NOT
+	bool isEmpty();
+
+	//TO CHECK F TREE IS NOT EMPTY OR NOT
+	bool isNotEmpty();
+
+	//GET COUNT FUNCTION
+	int getCount();
+
+	//PRINT COUNT
+	void printCount();
+
+	//FUNCTION TO SEARCH NODE
+	bool searchNode(Cnode *node,int key);
+
+	//FUNCTION TO DELETE NODE
+	Cnode* deleteNode(Cnode *currentNode, int value);
+
+	//GET LEVEL OF TREENODE
+	int levelOfTree(Cnode * node);
+
+	////COUNT TOTAL NODES IN TREE
+	int totalTreeNodes(Cnode *node);
+};
+
+
+#endif

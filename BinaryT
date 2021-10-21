@@ -1,0 +1,273 @@
+/****************PROGRAM TO WRITE THE IMPLEMENTATION OF BINARY TREE CLASS******************/
+#include<iostream>
+#include "BinTree.h"
+#include "Node.h"
+using namespace std;
+//NULL CONSTRUCTOR
+binTree::binTree():root(NULL), count(0) {}
+
+//PARAMETRIC CONSTRUCTOR
+binTree::binTree(Cnode *&ptr) :root(ptr), count(1)
+{
+	ptr = root->left = root->right = NULL;
+}
+
+//INSERT FUNCTION
+binTree& binTree::insert(Cnode *&ptr)
+{
+	Cnode *rptr, *bptr;
+	bptr = NULL;
+	rptr = root;
+	if (!root)
+	{
+		root = ptr;
+	}
+	else {
+		while (rptr)
+		{
+			bptr = rptr;
+			if (rptr->data == ptr->data)
+				return *this;
+			if (rptr->data < ptr->data)
+				rptr = rptr->right;
+			else
+				rptr = rptr->left;
+		}
+		if (bptr->data < ptr->data)
+		{
+			bptr->right = ptr;
+		}
+		else
+		{
+			bptr->left = ptr;
+		}
+	}
+	++count;//ptr =
+	ptr->left = ptr->right = NULL;
+	return *this;
+}
+
+//PRINT INORDER
+void binTree::printInorder()
+{
+	void printInorder(Cnode *root);
+
+	if (!root)
+		cout << "Empty Tree" << endl;
+	else
+		printInorder(root);
+}
+void printInorder(Cnode *root)
+{
+	if (root)
+	{
+		printInorder(root->left);
+		root->print(); cout << " "; 
+		printInorder(root->right);
+	}
+}
+
+//PRINT PREORDER
+void binTree::printPreorder()
+{
+	void printPreorder(Cnode *root);
+	if (!root)
+		cout << "Empty Tree" << endl;
+	else
+		printPreorder(root);
+}
+void printPreorder(Cnode *root)
+{
+	if (root)
+	{
+		root->print(); cout << " ";
+		printPreorder(root->left);
+		printPreorder(root->right);
+	}
+}
+
+//PRINT POSTORDER
+void binTree::printPostorder()
+{
+	void printPostorder(Cnode *root);
+	if (!root)
+		cout << "Empty Tree" << endl;
+	else
+		printPostorder(root);
+}
+void printPostorder(Cnode *root)
+{
+	if (root)
+	{
+		printPostorder(root->left);
+		printPostorder(root->right);
+		root->print(); cout << " ";
+	}
+}
+
+//DESTRUCTOR
+binTree::~binTree()
+{
+	void deleteNode(Cnode *&node);
+	if (root)
+		deleteNode(root);
+}
+void deleteNode(Cnode *&node)
+{
+	if (node)
+	{
+		deleteNode(node->left);
+		deleteNode(node->right);
+		cout << "\n Deleting node: " << node->data;
+		delete node;
+	}
+	node = NULL;
+}
+
+//PRINT REVERSE
+void binTree::printReverse()
+{
+	void printReverse(Cnode *root);
+	if (!root)
+		cout << "Empty Tree" << endl;
+	else
+		printReverse(root);
+}
+void printReverse(Cnode *root)
+{
+	if (root)
+	{
+		printReverse(root->right);
+		root->print(); cout << ",";
+		printReverse(root->left);
+	}
+}
+
+//FUNCTION TO FIND NODE WITH MINIMUM VALUE
+int binTree::minValue(Cnode *node)
+{
+	Cnode* current = node;
+	while (current->left != NULL)
+	{
+		current = current->left;
+	}
+	return(current->getData());
+}
+
+
+//FUNCTION TO FIND NODE WITH  MAXIMUM VALUE
+int binTree::maxValue(Cnode *node)
+{
+	Cnode* current = node;
+	while (current->right != NULL)
+	{
+		current = current->right;
+	}
+	return(current->getData());
+}
+
+//FUNCTION TO GET COUNT
+int binTree::getCount()
+{
+	return count;
+}
+
+//FUNCTION TO PRINT COUNT
+void binTree::printCount()
+{
+	cout << "COUNT: " << count<<endl;
+}
+
+//IS EMPTY FUNCTION
+bool binTree::isEmpty()
+{
+	if (root)
+		return false;
+	else
+		return true;
+
+}
+
+//IS NOT EMPTY FUNCTION
+bool binTree::isNotEmpty()
+{
+	if (root)
+		return true;
+	else
+		return false;
+
+}
+
+//SEARCH NODE FUNCTION
+bool binTree::searchNode(Cnode* node, int key)
+{
+	if (node == NULL)
+		return false;
+
+	if (node->getData() == key)
+		return true;
+
+	bool res1 = searchNode(node->left, key);
+	bool res2 = searchNode(node->right, key);
+
+	return res1 || res2;
+}
+
+//FUNCTION TO DELETE NODE IN BINARY TREE
+Cnode * binTree::deleteNode(Cnode *currentNode, int value)
+{
+	if (currentNode == NULL) // empty tree
+		return NULL;
+	else if (value < currentNode->getData())
+		currentNode->left = deleteNode(currentNode->left, value);
+	else if (value > currentNode->getData())
+		currentNode->right = deleteNode(currentNode->right, value);
+	else
+	{
+		if (currentNode->left == NULL && currentNode->right == NULL)
+		{
+			currentNode = NULL;
+		}
+		else if (currentNode->left == NULL) // node has only right child
+		{
+			currentNode = currentNode->right;
+		}
+		else if (currentNode->right == NULL) // node has only left child
+		{
+			currentNode = currentNode->left;
+		}
+		else
+		{
+			Cnode *tempNode = new Cnode(minValue(currentNode->right));
+			currentNode->setData(tempNode->getData());
+			currentNode->right = deleteNode(currentNode->right, tempNode->getData());
+		}
+
+	}
+
+	return currentNode;
+}
+
+//FUNCTION TO COUNT LEVEL OF TREES
+int binTree::levelOfTree(Cnode* node)
+{
+	if (node == NULL)
+		return 0;
+	else
+	{
+		int lDepth = levelOfTree(node->left);
+		int rDepth = levelOfTree(node->right);
+		if (lDepth > rDepth)
+			return(lDepth + 1);
+		else return(rDepth + 1);
+	}
+}
+
+//FUNCTION TO COUNT NUMBER OF TREES IN BINARY TREE
+int binTree::totalTreeNodes(Cnode* node)
+{
+	if (node == NULL)
+		return 0;
+	else
+		return(totalTreeNodes(node->left) + 1 + totalTreeNodes(node->right));
+}
