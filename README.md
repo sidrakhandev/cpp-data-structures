@@ -1,4 +1,4 @@
-# Data_Structures
+# Data_Structures: Data Structures are a specialized means of organizing and storing data in computers in such a way that we can perform operations on the stored data more efficiently. Data structures have a wide and diverse scope of usage across the fields of Computer Science and Software Engineering.
 Programs related to data structures in C++ from my university course.
  Following Data Structures are implemented:
 * Binary Tree
