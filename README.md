@@ -10,7 +10,7 @@
 <li> Stack </li>
 <li> Hash tree </li>
 <br>
-![dta](https://user-images.githubusercontent.com/55224607/193586623-992ba32a-52a0-4f42-97b6-ad3fd2522978.png)
+[dta](https://user-images.githubusercontent.com/55224607/193586623-992ba32a-52a0-4f42-97b6-ad3fd2522978.png)
 <br>
 
 <p> Data structures are an integral part of computers used for the arrangement of data in memory. They are essential and responsible for organizing, processing, accessing, and storing data efficiently. But this is not all. Various types of data structures have their own characteristics, features, applications, advantages, and disadvantages </p> 
