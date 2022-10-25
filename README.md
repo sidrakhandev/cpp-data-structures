@@ -6,4 +6,8 @@ Programs related to data structures in C++ from my university course.
 * Prioriy Queue
 * Queue
 * Stack
+* Hash tables
+* Trees
+* Heaps
 Contributing to Hactoberfest 2021🖤
+
