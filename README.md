@@ -9,5 +9,6 @@ Programs related to data structures in C++ from my university course.
 * Hash tables
 * Trees
 * Heaps
-Contributing to Hactoberfest 2021🖤
+Array, Queue, Linked list and stack are linear Data Structures while Trees and graphs are non linear Data Structures.
+Contributing to Hactoberfest 2022🖤
 
